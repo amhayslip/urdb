@@ -9,7 +9,14 @@
     #trailer
       %i.icon-youtube-play
       =link_to "Watch the trailer on YouTube", @movie.trailer_url, {target: "blank"}
-
+  #cast
+    %h2.centered Cast
+    %ul
+      %li
+      - @stars.each do |star|
+        = image_tag(star.headshot_url)
+        / %span.character Kate -
+        =star.name
     #showtimes
       %h2.centered Showtimes
 
