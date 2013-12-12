@@ -2,12 +2,26 @@ class Movie < ActiveRecord::Base
   has_many :showtimes
   has_many :roles
   has_many :stars, through: :roles
+  validates :title, presence: true
 
   def rotten_finder
     RottenMovie.find(title: title, limit: 1)
   end
   
   def snippet
-    description.truncate 50
+    description.to_s.truncate 50
   end
+
+  def audience_rating   
+    rotten_finder.ratings.audience_score   
+  end
+
+  def self.average_rating
+  end
+
+
 end
+
+
+
+# drop, create, migrate, seed, then rake db:migrate RAILS_ENV=test
